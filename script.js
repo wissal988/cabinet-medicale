@@ -1,29 +1,17 @@
-$(document).ready(function () {
-    $("#enregistrerDonnees").click(function () {
-        // Récupérer les données du formulaire
-        var nom = $("#nom").val();
-        var age = $("#age").val();
-
-        // Créer un objet avec les données à envoyer à PHP
-        var donneesAEnvoyer = {
-            nom: nom,
-            age: age
-        };
-
-        // Utilisation d'AJAX pour envoyer les données à PHP
-        $.ajax({
-            type: "POST",
-            url: "traitement.php", // Spécifier le fichier PHP de traitement
-            data: donneesAEnvoyer,
-            success: function (reponse) {
-                // Gérer la réponse du serveur PHP ici
-                console.log(reponse);
-            },
-            error: function (erreur) {
-                // Gérer les erreurs ici
-                console.error("Erreur AJAX: " + erreur.statusText);
-            }
-        });
-    });
+document.getElementById("registrationForm").addEventListener("submit", function(event) { 
+    event.preventDefault(); 
+ 
+    var username = document.getElementById("username").value; 
+    var email = document.getElementById("email").value; 
+    var password = document.getElementById("password").value; 
+ 
+    var xhr = new XMLHttpRequest(); 
+    xhr.open("POST", "register.php", true); 
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+    xhr.onreadystatechange = function() { 
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) { 
+            alert(xhr.responseText); 
+        } 
+    }; 
+    xhr.send("username=" + encodeURIComponent(username) + "&email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password)); 
 });
-
