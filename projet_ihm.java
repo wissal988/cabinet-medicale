@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 
-public class prjt extends JFrame {
+public class projet_ihm extends JFrame {
 	
 
     private JLabel questionLabel;
@@ -25,7 +25,7 @@ public class prjt extends JFrame {
 
     
     
-    public prjt() {
+    public projet_ihm() {
     	
     	super("Math Game");
     	
