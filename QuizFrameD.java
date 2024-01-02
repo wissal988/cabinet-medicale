@@ -131,43 +131,34 @@ public class QuizFrameD extends JFrame {
      }}
 	
 	private void checkAnswer() {
-        int userAnswer;
-        try {
-            userAnswer = Integer.parseInt(answerField.getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid number.");
-            return;
-        }
+	    int userAnswer;
+	    try {
+	        userAnswer = Integer.parseInt(answerField.getText());
+	    } catch (NumberFormatException e) {
+	        JOptionPane.showMessageDialog(this, "Please enter a valid number.");
+	        return;
+	    }
 
-        String[] questionParts = questionLabel.getText().split(" ");
-        int a = Integer.parseInt(questionParts[2]);
-        String operatorSymbol = questionParts[3];
-        int b = Integer.parseInt(questionParts[4]);
+	    String[] questionParts = questionLabel.getText().split(" ");
+	    int a = Integer.parseInt(questionParts[2]);
+	    String operatorSymbol = questionParts[3];
+	    int b = Integer.parseInt(questionParts[4]);
+	    int c = Integer.parseInt(questionParts[6]);
 
-        int result;
-        switch (operatorSymbol) {
-            case "+":
-                result = a + b;
-                break;
-            case "-":
-                if (a > b) {
-                    result = a - b;
-                } else {
-                    result = b - a;
-                }
-                break;
-            default:
-                result = a * b;
-                break;
-        }
+	    int result;
+	    if (operatorSymbol.equals("+")) {
+	        result = a + b * c;
+	    } else {
+	        result = a - b * c;
+	    }
 
-        if (userAnswer == result) {
-            resultLabel.setText("Correct! You are GENIUS");
-            correctAnswers++;
-        } else {
-            resultLabel.setText("Incorrect. The answer is " + result);
-        }
-        generateQuestion();
+	    if (userAnswer == result) {
+	        resultLabel.setText("Correct! You are GENIUS");
+	        correctAnswers++;
+	    } else {
+	        resultLabel.setText("Incorrect. The answer is " + result);
+	    }
+	    generateQuestion();
 	}
 	 private void displayResult() {
 	        JOptionPane.showMessageDialog(this, "You got " + correctAnswers + " out of " + numQuestions + " questions correct.");
