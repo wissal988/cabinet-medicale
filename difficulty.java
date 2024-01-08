@@ -8,6 +8,7 @@ public class difficulty extends JFrame {
 public difficulty() {
            JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("SPACE Maths");
         frame.setSize(800, 800);
         frame.setLocationRelativeTo(null);
 
@@ -22,7 +23,7 @@ public difficulty() {
 
         panel.setLayout(null);
         
-        JLabel lab = new JLabel("SPACE QUIZ ?!");
+        JLabel lab = new JLabel("SPACE MATHS ?!");
         lab.setBounds(150, 50, 500, 300);
         lab.setFont(new Font("Arial", Font.PLAIN, 60));
         lab.setForeground(Color.white);
