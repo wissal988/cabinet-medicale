@@ -17,7 +17,7 @@ public class test {
 	public test() {
 		JFrame f= new JFrame();
 		f.setSize(800,800);
-		f.setTitle("Math Game");
+		f.setTitle("SPACE Maths");
 		f.setLocationRelativeTo(null);
 		
 		JPanel p = new JPanel() {
@@ -31,7 +31,7 @@ public class test {
        
         p.setLayout(null);
         
-        JLabel lab = new JLabel("SPACE QUIZ ?!");
+        JLabel lab = new JLabel("SPACE MATHS ?!");
         lab.setBounds(150, 50, 500, 300);
         lab.setFont(new Font("Arial", Font.PLAIN, 60));
         lab.setForeground(Color.white);

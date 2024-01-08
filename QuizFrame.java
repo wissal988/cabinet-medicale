@@ -13,10 +13,12 @@ public class QuizFrame extends JFrame {
     private JTextField answerField;
     private JButton submitButton;
     private JLabel resultLabel;
+    private JLabel scoreLabel;
 	public QuizFrame() {
 		rand = new Random();
         JFrame frame = new JFrame();
      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     frame.setTitle("SPACE Maths");
      frame.setSize(800, 800);
      frame.setLocationRelativeTo(null);
 
@@ -29,11 +31,17 @@ public class QuizFrame extends JFrame {
          }
      };
      
-     JLabel lab = new JLabel("SPACE QUIZ ?!");
+     JLabel lab = new JLabel("SPACE MATHS ?!");
      lab.setBounds(150, 50, 500, 300);
      lab.setFont(new Font("Arial", Font.PLAIN, 60));
      lab.setForeground(Color.white);
      panel.add(lab);
+     
+     scoreLabel = new JLabel("Score" + "  " + correctAnswers);
+     scoreLabel.setBounds(300, 150, 500, 300);
+     scoreLabel.setFont(new Font("Arial", Font.PLAIN, 40));
+     scoreLabel.setForeground(Color.white);
+     panel.add(scoreLabel);
      
      Icon img2 = new ImageIcon("C:\\Users\\Lenovo\\Desktop\\Capture d’écran 2023-12-31 071753.png");
      JButton returnButton = new JButton(img2);
@@ -52,7 +60,7 @@ public class QuizFrame extends JFrame {
      
      panel.setLayout(null);
      questionLabel = new JLabel(); // Initialize the questionLabel
-     questionLabel.setBounds(300, 400, 300, 60);
+     questionLabel.setBounds(280, 400, 300, 60);
      questionLabel.setFont(new Font("Arial", Font.PLAIN, 30));
      questionLabel.setForeground(Color.white);
      
@@ -159,8 +167,10 @@ public class QuizFrame extends JFrame {
         if (userAnswer == result) {
             resultLabel.setText("Correct! You are GENIUS");
             correctAnswers++;
+            scoreLabel.setText("Score: " + correctAnswers++);
         } else {
             resultLabel.setText("Incorrect. The answer is " + result);
+            scoreLabel.setText("Score: " + correctAnswers++);
         }
         generateQuestion();
 	}

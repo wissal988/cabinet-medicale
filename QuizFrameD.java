@@ -13,10 +13,12 @@ public class QuizFrameD extends JFrame {
     private JTextField answerField;
     private JButton submitButton;
     private JLabel resultLabel;
+    private JLabel scoreLabel;
 	public QuizFrameD() {
 		rand = new Random();
         JFrame frame = new JFrame();
      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     frame.setTitle("SPACE Maths");
      frame.setSize(800, 800);
      frame.setLocationRelativeTo(null);
 
@@ -29,15 +31,23 @@ public class QuizFrameD extends JFrame {
          }
      };
 
-     JLabel lab = new JLabel("SPACE QUIZ ?!");
+     JLabel lab = new JLabel("SPACE MATHS ?!");
      lab.setBounds(150, 50, 500, 300);
      lab.setFont(new Font("Arial", Font.PLAIN, 60));
      lab.setForeground(Color.white);
      panel.add(lab);
      
+     scoreLabel = new JLabel("Score" + "  " + correctAnswers);
+     scoreLabel.setBounds(300, 150, 500, 300);
+     scoreLabel.setFont(new Font("Arial", Font.PLAIN, 40));
+     scoreLabel.setForeground(Color.white);
+     panel.add(scoreLabel);
+     
+     
+     
      panel.setLayout(null);
      questionLabel = new JLabel(); // Initialize the questionLabel
-     questionLabel.setBounds(300, 400, 300, 60);
+     questionLabel.setBounds(280, 400, 300, 60);
      questionLabel.setFont(new Font("Arial", Font.PLAIN, 30));
      questionLabel.setForeground(Color.white);
      
@@ -83,6 +93,7 @@ public class QuizFrameD extends JFrame {
      frame.add(panel);
      frame.setVisible(true);
      generateQuestion();
+    
 	}
 	private void generateQuestion() {
     if (currentQuestion < numQuestions) {  
@@ -101,26 +112,26 @@ public class QuizFrameD extends JFrame {
 
          switch (operator) {
          case 0:
-             result = a + b / c;
+             result = a + b * c;
              operatorSymbol1 = "+";
              operatorSymbol2 = "*";
              break;
          default :
          	if(a>b) {
-                 result = a - b / c;
+                 result = a - b * c;
                  operatorSymbol1 = "-";
                  operatorSymbol2 = "*";
              } else {
-                 result = b - a / c;
+                 result = b - a * c;
                  operatorSymbol1 = "-";
                  operatorSymbol2 = "*";
              }
              break;
      }
          if(a<b){
-         questionLabel.setText("What is " + b + " " + operatorSymbol1 + " " + a + " " + operatorSymbol2 + c + " ?");
+         questionLabel.setText("What is " + b + " " + operatorSymbol1 + " " + a + " " + operatorSymbol2 + " " + c + " ?");
          }else {
-         questionLabel.setText("What is " + a + " " + operatorSymbol1 + " " + b + " " + operatorSymbol2 + c + " ?");
+         questionLabel.setText("What is " + a + " " + operatorSymbol1 + " " + b + " " + operatorSymbol2 + " " + c + " ?");
          }
          
          answerField.setText("");
@@ -155,18 +166,20 @@ public class QuizFrameD extends JFrame {
 	    if (userAnswer == result) {
 	        resultLabel.setText("Correct! You are GENIUS");
 	        correctAnswers++;
+	        scoreLabel.setText("Score: " + correctAnswers++);
 	    } else {
 	        resultLabel.setText("Incorrect. The answer is " + result);
+	        scoreLabel.setText("Score: " + correctAnswers++);
 	    }
 	    generateQuestion();
+	    
 	}
 	 private void displayResult() {
 	        JOptionPane.showMessageDialog(this, "You got " + correctAnswers + " out of " + numQuestions + " questions correct.");
 	        System.exit(0);}
-     
-	
-
-
+	 
+	 
+	 
 public static void main(String[] args) {
 	SwingUtilities.invokeLater(new Runnable() {
         public void run() {
